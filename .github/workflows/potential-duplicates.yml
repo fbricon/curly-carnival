@@ -6,7 +6,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: wow-actions/potential-duplicates@v1
+      - uses: wow-actions/potential-duplicates@3f5daf802924b455963f637cc434d5edafff3ed5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Issue title filter work with anymatch https://www.npmjs.com/package/anymatch.
