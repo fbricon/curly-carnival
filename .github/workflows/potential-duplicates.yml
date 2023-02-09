@@ -27,7 +27,7 @@ jobs:
           # Comment to post when potential duplicates are detected.
           comment: |
             We have found issues that are potential duplicates: {{#issues}}
-              - #{{ number }} ({{ accuracy }}%)
+              - [{{number}} {{title}}](#{{ number }}) ({{ accuracy }}%)
             {{/issues}}
            
             If any of the issues listed above are a duplicate, please consider closing this issue & upvoting/commenting the original one.
