@@ -1,0 +1,40 @@
+#trigger github workflow on every commit
+name: test
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+  build-javac-support:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate content
+        run: |
+          echo " - One
+           - Two
+           - Three" > count.md
+          cat count.md
+          cat changelog.md
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Publish to GH Release Tab
+        uses: "marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0"
+        with:
+          repo_token: "${{secrets.GITHUB_TOKEN}}"
+          automatic_release_tag: "javac-prototype"
+          prerelease: true
+          title: "test"
+          files: |
+            count.md
+
+      - name: Update release description
+        run: |
+          echo " - One\n - Two\n - Three" >> notes.md
+          cat notes.md
+          gh release edit javac-prototype -F count.md
+        env:
+          GH_TOKEN: ${{ github.token }}
